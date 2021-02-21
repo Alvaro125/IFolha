@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
+import axios from 'axios';
 
 import { fromImageToUrl, API_URL } from '../../utils/urls'
 
@@ -33,7 +34,7 @@ function Posts({ posts }) {
   // This function gets called at build time
   export async function getStaticProps() {
     // Call an external API endpoint to get posts
-    const res = await fetch(`${API_URL}/posts`)
+    const res = await fetch(`${API_URL}posts`)
     const posts = await res.json()
 
     // By returning {props: { posts} }, the Posts component

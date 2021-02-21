@@ -1,12 +1,10 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
+import ReactMarkdown from "react-markdown";
 
 import { fromImageToUrl, API_URL } from '../../utils/urls'
 
 function Post({ post }) {
-  function createMarkup() {
-    return {__html: post.conteudo};
-  }
     return(
         <div>
             <Head>
@@ -19,9 +17,9 @@ function Post({ post }) {
             <div class="text-center">
                 <img src={fromImageToUrl(post.capa)} />
             </div>
-            <h1>{post.Titulo}</h1>
+            <h1>{post.titulo}</h1>
             <h3>{post.descricao}</h3>
-            <div id="ctx" dangerouslySetInnerHTML={createMarkup()}></div>
+            <ReactMarkdown source={post.conteudo} escapeHtml={false} />
             <h5>{post.data}</h5>
         </body>
         </div>
@@ -31,7 +29,7 @@ function Post({ post }) {
   
   export async function getStaticPaths() {
     // Call an external API endpoint to get posts
-    const res = await fetch(`${API_URL}/posts`)
+    const res = await fetch(`${API_URL}posts`)
     const posts = await res.json()
   
     // Get the paths we want to pre-render based on posts
@@ -46,7 +44,7 @@ function Post({ post }) {
   export async function getStaticProps({ params }) {
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1
-    const res = await fetch(`${API_URL}/posts/${params.id}`)
+    const res = await fetch(`${API_URL}posts/${params.id}`)
     const post = await res.json()
   
     // Pass post data to the page via props
