@@ -29,7 +29,7 @@ function Post({ post }) {
   
   export async function getStaticPaths() {
     // Call an external API endpoint to get posts
-    const res = await fetch(`${API_URL}posts`)
+    const res = await fetch(`${API_URL}/posts`)
     const posts = await res.json()
   
     // Get the paths we want to pre-render based on posts
@@ -44,7 +44,7 @@ function Post({ post }) {
   export async function getStaticProps({ params }) {
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1
-    const res = await fetch(`${API_URL}posts/${params.id}`)
+    const res = await fetch(`${API_URL}/posts/${params.id}`)
     const post = await res.json()
   
     // Pass post data to the page via props

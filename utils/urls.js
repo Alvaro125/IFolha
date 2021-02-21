@@ -1,4 +1,4 @@
-const API_URL = 'https://contoleifolha.herokuapp.com/'
+const API_URL = 'https://contoleifolha.herokuapp.com'
 
 /**
  *
